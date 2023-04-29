@@ -18,7 +18,10 @@ def entry():
 @app.route('/exit')
 def exit():
     requestedTicketId = request.args.get('ticketId')
-    carInfo = parkedCarsInfo[ticketId]
+    if requestedTicketId not in parkedCarsInfo:
+        return f"Ticket ID {requestedTicketId} is not found!"
+    
+    carInfo = parkedCarsInfo[requestedTicketId]
     totalHours = (datetime.now() - carInfo[2]).total_seconds() / 3600
     if totalHours - int(totalHours) < 0.25:
         totalHours = int(totalHours)
