@@ -7,7 +7,7 @@ class parkingAPI:
     ticketId = 1
     parkedCarsInfo = {}
 
-    @app.route('/entry', methods=['POST'])
+    @app.route('/entry', methods=['GET', 'POST'])
     def entry():
         plate = request.args.get('plate')
         parkingLot = request.args.get('parkingLot')
@@ -18,7 +18,7 @@ class parkingAPI:
         #return f"your ticket ID is: {lastTicketId}. Enjoy!"
         return parkingAPI.parkedCarsInfo[parkingAPI.ticketId]
 
-    @app.route('/exit', methods=['POST'])
+    @app.route('/exit', methods=['GET', 'POST'])
     def exit():
         requestedTicketId = int(request.args.get('ticketId'))
         if requestedTicketId not in parkingAPI.parkedCarsInfo:
