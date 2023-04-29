@@ -24,6 +24,7 @@ class parkingAPI:
             return f"Ticket ID {requestedTicketId} is not found!"
         
         carInfo = parkingAPI.parkedCarsInfo[requestedTicketId]
+        del parkingAPI.parkedCarsInfo[requestedTicketId]
         totalHours = (datetime.now() - carInfo[2]).total_seconds() / 3600
         if totalHours - int(totalHours) < 0.25:
             totalHours = int(totalHours)
