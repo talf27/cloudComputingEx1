@@ -9,8 +9,8 @@ class parkingAPI:
 
     @app.route('/entry', methods=['GET', 'POST'])
     def entry():
-        plate = request.form.get('plate')
-        parkingLot = request.form.get('parkingLot')
+        plate = request.args.get('plate')
+        parkingLot = request.args.get('parkingLot')
         parkingAPI.parkedCarsInfo[parkingAPI.ticketId] = (plate, parkingLot, datetime.now())
         lastTicketId = parkingAPI.ticketId
         parkingAPI.ticketId += 1
@@ -19,7 +19,7 @@ class parkingAPI:
 
     @app.route('/exit', methods=['GET', 'POST'])
     def exit():
-        requestedTicketId = int(request.form.get('ticketId'))
+        requestedTicketId = int(request.args.get('ticketId'))
         if requestedTicketId not in parkingAPI.parkedCarsInfo:
             return f"Ticket ID {requestedTicketId} is not found!"
         
