@@ -16,7 +16,7 @@ class parkingAPI:
         parkingAPI.ticketId += 1
 
         #return f"your ticket ID is: {lastTicketId}. Enjoy!"
-        return parkingAPI.parkedCarsInfo[parkingAPI.ticketId]
+        return parkingAPI.parkedCarsInfo[parkingAPI.ticketId][0]
 
     @app.route('/exit', methods=['GET', 'POST'])
     def exit():
