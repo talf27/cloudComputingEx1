@@ -9,7 +9,7 @@ class parkingAPI:
 
     @app.route('/entry', methods=['GET', 'POST'])
     def entry():
-        plate = request.args.get('plate')
+        plate = request.form.get('plate')
         parkingLot = request.form.get('parkingLot')
         parkingAPI.parkedCarsInfo[parkingAPI.ticketId] = (plate, parkingLot, datetime.now())
         lastTicketId = parkingAPI.ticketId
