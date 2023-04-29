@@ -15,7 +15,7 @@ def entry():
 
     return f"your ticket ID is: {ticketId}. Enjoy!"
 
-@app.route('/exit')
+@app.route('/exit', methods=['POST'])
 def exit():
     requestedTicketId = request.args.get('ticketId')
     if requestedTicketId not in parkedCarsInfo:
