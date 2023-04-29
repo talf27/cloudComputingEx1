@@ -19,7 +19,7 @@ class parkingAPI:
 
     @app.route('/exit', methods=['POST'])
     def exit():
-        requestedTicketId = request.args.get('ticketId')
+        requestedTicketId = int(request.args.get('ticketId'))
         if requestedTicketId not in parkingAPI.parkedCarsInfo:
             return f"Ticket ID {requestedTicketId} is not found!"
         
