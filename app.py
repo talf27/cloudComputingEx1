@@ -12,9 +12,10 @@ class parkingAPI:
         plate = request.args.get('plate')
         parkingLot = request.args.get('parkingLot')
         parkingAPI.parkedCarsInfo[parkingAPI.ticketId] = (plate, parkingLot, datetime.now())
-        ticketId += 1
+        lastTicketId = parkingAPI.ticketId
+        parkingAPI.ticketId += 1
 
-        return f"your ticket ID is: {ticketId}. Enjoy!"
+        return f"your ticket ID is: {lastTicketId}. Enjoy!"
 
     @app.route('/exit', methods=['POST'])
     def exit():
