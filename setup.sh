@@ -26,12 +26,12 @@ echo "Setting up firewall rules for SSH from $MY_IP only and HTTP access for all
 aws ec2 authorize-security-group-ingress --group-name $SEC_GRP --port 22 --protocol tcp --cidr $MY_IP/32
 aws ec2 authorize-security-group-ingress --group-name $SEC_GRP --port 5000 --protocol tcp --cidr 0.0.0.0/0
 
+echo "----------------------------------------------------------------------------------------------------"
+
 # Launching EC2 instance
 echo "Launching Ubuntu EC2 instance"
 RUN_INSTANCES=$(aws ec2 run-instances --image-id $UBUNTU_22_04_AMI --instance-type t3.micro --key-name $KEY_NAME --security-groups $SEC_GRP)
 INSTANCE_ID=$(echo $RUN_INSTANCES | grep -oP '(?<="InstanceId": ")[^"]*' | cut -d '"' -f 1)
-
-echo "----------------------------------------------------------------------------------------------------"
 
 # Waiting for the instance to be created
 echo "Waiting for instance creation..."
@@ -57,7 +57,7 @@ EOF
 
 echo "----------------------------------------------------------------------------------------------------"
 echo "Deployment completed! checking the endpoints - outputs example:"
-echo "car with plate number '123-123-123' enters to parking lot number 382:
+echo "car with plate number '123-123-123' enters to parking lot number 382:"
 curl -X POST "http://$PUBLIC_IP:5000/entry?plate=123-123-123&parkingLot=382"
 
 echo "entered car exits the parking lot with no charge: (Try run the command: curl -X POST \"http://$PUBLIC_IP:5000/exit?ticketId=1\" later to see charge by hours)"
