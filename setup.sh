@@ -4,7 +4,7 @@
 KEY_NAME="cloud-computing-ex1-$(date +'%N')"
 KEY_PEM="$KEY_NAME.pem"
 SEC_GRP="my-sg-$(date +'%N')"
-UBUNTU_22_04_AMI="ami-064087b8d355e9051"
+UBUNTU_22_04_AMI="ami-0dba2cb6798deb6d8"
 
 # Creating key pair and securing it
 echo "Creating key pair $KEY_PEM to connect to instances and saving locally"
