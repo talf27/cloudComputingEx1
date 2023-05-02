@@ -4,7 +4,7 @@
 KEY_NAME="cloud-computing-ex1-$(date +'%N')"
 KEY_PEM="$KEY_NAME.pem"
 SEC_GRP="my-sg-$(date +'%N')"
-UBUNTU_22_04_AMI="ami-042e8287309f5df03"
+UBUNTU_22_04_AMI="ami-064087b8d355e9051"
 
 # Creating key pair and securing it
 echo "Creating key pair $KEY_PEM to connect to instances and saving locally"
@@ -49,6 +49,7 @@ echo "Deploying Flask app to $PUBLIC_IP and setting up production environment (i
 scp -i $KEY_PEM -o "StrictHostKeyChecking=no" -o "ConnectionAttempts=60" app.py ubuntu@$PUBLIC_IP:/home/ubuntu/
 ssh -i $KEY_PEM -o "StrictHostKeyChecking=no" -o "ConnectionAttempts=10" ubuntu@$PUBLIC_IP <<EOF
     sudo apt update
+    sudo apt-get update -y
     sudo apt install python3-flask -y
     # run app
     nohup flask run --host 0.0.0.0 &>/dev/null &
