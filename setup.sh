@@ -19,14 +19,14 @@ aws ec2 create-security-group --group-name $SEC_GRP --description "Access my ins
 MY_IP=$(curl ipinfo.io/ip)
 echo "My IP address is: $MY_IP"
 
-echo "\n----------------------------------------------------------------------------------------------------\n"
+echo \n"----------------------------------------------------------------------------------------------------"\n
 
 # Setting up firewall rules
 echo "Setting up firewall rules for SSH from $MY_IP only and HTTP access for all addresses"
 aws ec2 authorize-security-group-ingress --group-name $SEC_GRP --port 22 --protocol tcp --cidr $MY_IP/32
 aws ec2 authorize-security-group-ingress --group-name $SEC_GRP --port 5000 --protocol tcp --cidr 0.0.0.0/0
 
-echo "\n----------------------------------------------------------------------------------------------------\n"
+echo \n"----------------------------------------------------------------------------------------------------"\n
 
 # Launching EC2 instance
 echo "Launching Ubuntu EC2 instance"
@@ -42,7 +42,7 @@ PUBLIC_IP=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query 'Rese
 
 echo "New instance $INSTANCE_ID @ $PUBLIC_IP was created!"
 
-echo "\n----------------------------------------------------------------------------------------------------\n"
+echo \n"----------------------------------------------------------------------------------------------------"\n
 
 # Deploying the Flask app
 echo "Deploying Flask app to $PUBLIC_IP and setting up production environment (ignore the additional output...)"
@@ -55,7 +55,7 @@ ssh -i $KEY_PEM -o "StrictHostKeyChecking=no" -o "ConnectionAttempts=10" ubuntu@
     exit
 EOF
 
-echo "\n----------------------------------------------------------------------------------------------------\n"
+echo \n"----------------------------------------------------------------------------------------------------"\n
 echo "Deployment completed! checking the endpoints - outputs example:"
 echo "car with plate number '123-123-123' enters to parking lot number 382:"
 curl -X POST "http://$PUBLIC_IP:5000/entry?plate=123-123-123&parkingLot=382"
