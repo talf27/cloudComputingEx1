@@ -17,3 +17,9 @@ after cloning the repository:
 - *cd ./cloudComputingEx1/*
 - run the bash script that deploys the code to the cloud: *./setup.sh*
 - you can see the script's output example at the file "output.txt".
+
+-----
+
+you can send POSTs requests to the app's endpoints:
+- entry would return the ticket id of the entered car (with the requested parameters "plate" and "parkingLot").
+- after that, exit with the given ticket id would return the license plate, total parked time, the parking lot id and the charge (based on 15 minutes increments).
