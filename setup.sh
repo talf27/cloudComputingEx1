@@ -68,6 +68,6 @@ echo
 echo "Deployment completed! checking the endpoints - outputs example:"
 echo "car with plate number '123-123-123' enters to parking lot number 382:"
 curl -X POST "http://$PUBLIC_IP:5000/entry?plate=123-123-123&parkingLot=382"
-
+echo
 echo "entered car exits the parking lot with no charge: (Try run the command: curl -X POST \"http://$PUBLIC_IP:5000/exit?ticketId=1\" later to see charge by hours)"
 curl -X POST "http://$PUBLIC_IP:5000/exit?ticketId=1"
