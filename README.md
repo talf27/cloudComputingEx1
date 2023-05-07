@@ -14,6 +14,8 @@ written in python with Flask.
 -----
 
 after cloning the repository:
+- install AWS CLI
+- configure AWS setup with access keys of an existing user and region: eu-west-1 - Europe (Ireland)
 - *cd ./cloudComputingEx1/*
 - run the bash script that deploys the code to the cloud: *./setup.sh*
 - you can see the script's output example at the file "output.txt".
